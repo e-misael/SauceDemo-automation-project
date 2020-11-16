@@ -1,0 +1,8 @@
+testShouldValidateIncorrectLogin, url, user, password, message
+                               , "https://www.saucedemo.com/", "", "secret_sauce", "Epic sadface: Username is required"
+                               , "https://www.saucedemo.com/", "standard_user", "", "Epic sadface: Password is required"
+                               , "https://www.saucedemo.com/", "standard_user", "WrongPassword", "Epic sadface: Username and password do not match any user in this service"
+                               , "https://www.saucedemo.com/", "inexistent_user", "secret_sauce", "Epic sadface: Username and password do not match any user in this service"
+                               , "https://www.saucedemo.com/", "locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."
+testShouldSuccessfullyLogin, url, user, password
+                           , "https://www.saucedemo.com/", "standard_user", "secret_sauce"
