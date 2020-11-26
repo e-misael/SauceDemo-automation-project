@@ -9,7 +9,7 @@ public class Browser {
 
     public static WebDriver createChrome() {
 
-        System.setProperty("webdriver.chrome.driver", "src\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/drivers/chromedriver_v86.exe");
 
         WebDriver browser = new ChromeDriver();
         browser.manage().deleteAllCookies();
