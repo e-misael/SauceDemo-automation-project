@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     protected WebDriver browser;
@@ -16,4 +18,12 @@ public class BasePage {
 
         return new CartPage(browser);
     }
+
+    public void waitFor(By element) {
+
+        WebDriverWait waitForElement = new WebDriverWait(browser, 20);
+        waitForElement.until(ExpectedConditions.presenceOfElementLocated(element));
+
+    }
+
 }

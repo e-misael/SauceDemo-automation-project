@@ -19,6 +19,8 @@ public class CheckoutInformationPage extends BasePage{
     }
 
     public CheckoutInformationPage fillFirstName (String firstname){
+
+        waitFor(firstNameField);
         browser.findElement(firstNameField).sendKeys(firstname);
         return this;
     }

@@ -18,13 +18,10 @@ public class CartPage extends BasePage {
         super(browser);
     }
 
-    public CartPage verifyCartPageTitle(){
-        browser.findElement(pageTitle).getText();
-
-        return this;
-    }
-
     public List<String> loadItemCartDetails(){
+
+        waitFor(pageTitle);
+
         List<String> productDetails = new ArrayList<String>();
         productDetails.add(browser.findElement(productName).getText());
         productDetails.add(browser.findElement(productDescription).getText());
