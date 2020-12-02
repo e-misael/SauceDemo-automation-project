@@ -14,6 +14,7 @@ import utils.RandomDateGenerator;
 import utils.Screenshot;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +35,9 @@ public class ProductTest extends Browser {
         browser = createChrome();
     }
 
-    // This test aims to identify if the inventory's items are consistent as expected.
+    /**
+     * Description: This test should verify whether inventory items are shown as registered.
+     **/
     @Test
     public void testShouldListInventoryProducts(@Param(name = "url") String url,
                                                 @Param(name = "user") String user,
@@ -66,7 +69,10 @@ public class ProductTest extends Browser {
                 + methodName + imageExt);
     }
 
-    // This test aims to verify if cart counter is representing all products added.
+    /**
+     * Description: This test aims to verify if cart counter is representing all added products.
+     **/
+
     @Test
     public void testShouldAddProductToCart(@Param(name = "url") String url,
                                            @Param(name = "user") String user,
@@ -97,7 +103,10 @@ public class ProductTest extends Browser {
                 + methodName + imageExt);
     }
 
-    // This test aims to verify item details on detailing.
+    /**
+     * Description: This test aims to verify item details on detailing.
+     **/
+
     @Test
     public void testShouldDetailingProduct(@Param(name = "url") String url,
                                            @Param(name = "user") String user,

@@ -29,6 +29,9 @@ public class OverviewPage extends BasePage {
     }
 
     public List<String> getProductDetails (){
+
+        waitFor(pageTitle);
+
         // Details
         List<String> itemDetails = new ArrayList<String>();
         itemDetails.add(browser.findElement(itemQty).getText());
@@ -43,14 +46,14 @@ public class OverviewPage extends BasePage {
         return itemDetails;
     }
 
-    public List<String> getCheckoutValues (){
-        List<String> checkoutValues = new ArrayList<String>();
-        checkoutValues.add(browser.findElement(summarySubtotal).getText());
-        checkoutValues.add(browser.findElement(summaryTax).getText());
-        checkoutValues.add(browser.findElement(summaryTotal).getText());
-
-        return checkoutValues;
-    }
+//    public List<String> getCheckoutValues (){
+//        List<String> checkoutValues = new ArrayList<String>();
+//        checkoutValues.add(browser.findElement(summarySubtotal).getText());
+//        checkoutValues.add(browser.findElement(summaryTax).getText());
+//        checkoutValues.add(browser.findElement(summaryTotal).getText());
+//
+//        return checkoutValues;
+//    }
 
     public FinishPage goToCompletePage (){
         browser.findElement(btn_Finish).click();

@@ -29,8 +29,9 @@ public class ProductPage extends BasePage {
         return this;
     }
 
-
     public ProductDetailsPage detailInventoryProduct (String productName) {
+
+        waitFor(pageTitle);
         browser.findElement(product_SauceLabsBackpack).click();
 
         return new ProductDetailsPage(browser);
@@ -48,7 +49,10 @@ public class ProductPage extends BasePage {
     }
 
     public String getProductPageTitle(){
-          return browser.findElement(pageTitle).getText();
+
+        waitFor(pageTitle);
+        return browser.findElement(pageTitle).getText();
+
     }
 
     public boolean identifyIfHeaderIsDisplayed (){

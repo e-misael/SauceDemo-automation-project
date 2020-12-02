@@ -11,7 +11,10 @@ public class FinishPage extends BasePage {
     }
 
     public String getSuccessMessage (){
+
+        waitFor(message);
         return browser.findElement(message).getText();
+
     }
 
 
