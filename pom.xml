@@ -18,7 +18,7 @@
                     <version>3.0.0-M5</version>
                     <configuration>
                         <parallel>methods</parallel>
-                        <threadCount>5</threadCount>
+                        <threadCount>10</threadCount>
                     </configuration>
                 </plugin>
 
@@ -30,9 +30,17 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
-
-
 
     <!-- Generate reports - Comando: mvn clean test site -->
     <reporting>
