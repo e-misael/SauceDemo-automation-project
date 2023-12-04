@@ -12,7 +12,7 @@ public class CheckoutInformationPage extends BasePage{
     private By lastNameField = By.cssSelector("[data-test='lastName']");
     private By zipCodeField = By.cssSelector("[data-test='postalCode']");
 
-    private By btn_Checkout = By.xpath("//input[contains(@value, 'CONTINUE')]");
+    private By btn_Continue = By.id("continue");
 
     public CheckoutInformationPage(WebDriver browser) {
         super(browser);
@@ -35,13 +35,13 @@ public class CheckoutInformationPage extends BasePage{
         return this;
     }
 
-    public OverviewPage clickAtCheckoutButtonAndProceed(){
-        browser.findElement(btn_Checkout).click();
+    public OverviewPage clickAtContinueButtonAndProceed(){
+        browser.findElement(btn_Continue).click();
         return new OverviewPage(browser);
     }
 
-    public CheckoutInformationPage clickAtCheckoutButtonAndStay(){
-        browser.findElement(btn_Checkout).click();
+    public CheckoutInformationPage clickAtContinueButtonAndStay(){
+        browser.findElement(btn_Continue).click();
         return this;
     }
 
@@ -58,7 +58,7 @@ public class CheckoutInformationPage extends BasePage{
         fillFirstName(firstname);
         fillLastName(lastname);
         fillZipCode(zipcode);
-        clickAtCheckoutButtonAndProceed();
+        clickAtContinueButtonAndProceed();
 
         return new OverviewPage(browser);
     }

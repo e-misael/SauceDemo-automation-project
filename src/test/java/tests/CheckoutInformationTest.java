@@ -61,7 +61,7 @@ public class CheckoutInformationTest extends Browser {
                 .fillFirstName(firstName)
                 .fillLastName(lastName)
                 .fillZipCode(zipCode)
-                .clickAtCheckoutButtonAndStay()
+                .clickAtContinueButtonAndStay()
                 .getValidationMessage();
 
         assertEquals(expectedMessage, receivedMessage);

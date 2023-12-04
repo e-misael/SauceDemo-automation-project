@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductPage extends BasePage {
-    private By pageTitle = By.className("product_label");
+    private By header_Products = By.xpath("//span[@class='title']");
     private By btn_Cart = By.id("shopping_cart_container");
     private By btn_AddToCart;
 
     private By product_SauceLabsBackpack = By.linkText("Sauce Labs Backpack");
-    private By header_Products = By.className("product_label");
 
 
     public ProductPage(WebDriver browser) {
@@ -22,8 +21,7 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage addItemToCartWithoutDetailing (String productName){
-        btn_AddToCart = By.xpath("//div[text()='" + productName + "']/../../../div/button");
-
+        btn_AddToCart = By.xpath("//div[text()='" + productName + "']/../../../div/button[text()='Add to cart']");
         browser.findElement(btn_AddToCart).click();
 
         return this;
@@ -31,7 +29,7 @@ public class ProductPage extends BasePage {
 
     public ProductDetailsPage detailInventoryProduct (String productName) {
 
-        waitFor(pageTitle);
+        waitFor(header_Products);
         browser.findElement(product_SauceLabsBackpack).click();
 
         return new ProductDetailsPage(browser);
@@ -50,8 +48,8 @@ public class ProductPage extends BasePage {
 
     public String getProductPageTitle(){
 
-        waitFor(pageTitle);
-        return browser.findElement(pageTitle).getText();
+        waitFor(header_Products);
+        return browser.findElement(header_Products).getText();
 
     }
 

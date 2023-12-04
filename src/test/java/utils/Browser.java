@@ -1,21 +1,27 @@
 package utils;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
+    public WebDriver browser;
+    protected static String _URL = "https://www.saucedemo.com/";
+    public WebDriver createChrome() {
 
-    public static WebDriver createChrome() {
+        WebDriverManager.chromedriver().setup();
 
-        System.setProperty("webdriver.chrome.driver", "src/drivers/chromedriver_v86.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
 
-        WebDriver browser = new ChromeDriver();
+        browser = new ChromeDriver(options);
         browser.manage().deleteAllCookies();
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        browser.navigate().to("https://www.saucedemo.com/");
+        browser.navigate().to(_URL);
 
         return browser;
     }

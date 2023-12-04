@@ -11,7 +11,7 @@ public class ProductDetailsPage extends BasePage {
     private final By productDescription = By.className("inventory_details_desc");
     private final By productPrice = By.className("inventory_details_price");
 
-    private final By btn_AddToCart = By.xpath("//button[text()='ADD TO CART']");
+    private final By btn_AddToCart = By.xpath("//button[text()='Add to cart']");
     private final By cartSize = By.xpath("//div[@id='header_container']//span");
 
     public ProductDetailsPage(WebDriver browser) {

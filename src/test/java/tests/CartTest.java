@@ -1,11 +1,14 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.easetech.easytest.annotation.DataLoader;
 import org.easetech.easytest.annotation.Param;
 import org.easetech.easytest.runner.DataDrivenTestRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import pages.SauceDemoLoginPage;
@@ -16,6 +19,7 @@ import utils.Screenshot;
 import java.util.Arrays;
 import java.util.List;
 
+import static io.qameta.allure.SeverityLevel.NORMAL;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(DataDrivenTestRunner.class)
@@ -43,6 +47,8 @@ public class CartTest extends Browser {
      **/
 
     @Test
+    @Severity(NORMAL)
+    @DisplayName("Add Product To Cart And Verify Item Details")
     public void testShouldAddProductToCartAndVerifyItemDetails(@Param(name = "url") String url,
                                                            @Param(name = "user") String user,
                                                            @Param(name = "password") String password,
@@ -69,9 +75,9 @@ public class CartTest extends Browser {
 
         assertEquals(expectedProductDetails, receivedProductDetails);
 
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+//        Screenshot.takeScreenshot(browser, filePath
+//                + RandomDateGenerator.generateTimestampToFile()
+//                + methodName + imageExt);
     }
 
     /**
@@ -79,6 +85,8 @@ public class CartTest extends Browser {
      **/
 
     @Test
+    @Severity(SeverityLevel.MINOR)
+    @DisplayName("Return to inventory")
     public void testShouldReturnToInventory(@Param(name = "url") String url,
                                             @Param(name = "user") String user,
                                             @Param(name = "password") String password,

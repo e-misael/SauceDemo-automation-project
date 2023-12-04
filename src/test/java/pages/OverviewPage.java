@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OverviewPage extends BasePage {
-    private By pageTitle = By.className("subheader");
+    private By pageTitle = By.className("header_secondary_container");
 
-    private By itemQty = By.className("summary_quantity");
+//    private By itemQty = By.className("summary_quantity");
+    private By itemQty = By.className("cart_quantity");
     private By itemName = By.className("inventory_item_name");
     private By itemDescription = By.className("inventory_item_desc");
     private By itemPrice = By.className("inventory_item_price");
@@ -18,7 +19,7 @@ public class OverviewPage extends BasePage {
     private By summaryTax = By.className("summary_tax_label");
     private By summaryTotal = By.className("summary_total_label");
 
-    private By btn_Finish = By.xpath("//a[text()='FINISH']");
+    private By btn_Finish = By.id("finish");
 
     public OverviewPage(WebDriver browser) {
         super(browser);

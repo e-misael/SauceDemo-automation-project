@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage extends BasePage {
-    private By pageTitle = By.className("subheader");
+    private By pageTitle = By.className("header_label");
     private By productName = By.className("inventory_item_name");
     private By productDescription = By.className("inventory_item_desc");
     private By productPrice = By.className("inventory_item_price");
-    private By btn_ContinueShopping = By.xpath("//a[text()='Continue Shopping']");
-    private By btn_Checkout = By.xpath("//a[text()='CHECKOUT']");
+    private By btn_ContinueShopping = By.id("continue-shopping");
+    private By btn_Checkout = By.id("checkout");
 
     public CartPage(WebDriver browser) {
         super(browser);
