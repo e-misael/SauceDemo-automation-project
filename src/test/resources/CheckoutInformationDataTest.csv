@@ -1,5 +1,0 @@
-testShouldValidateRequiredFields, url, user, password, productName, firstname, lastname, zipcode, message
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Sauce Labs Backpack", "", "", "", "Error: First Name is required"
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Sauce Labs Backpack", "", "Marcos", "302010", "Error: First Name is required"
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Sauce Labs Backpack", "João", "", "302010", "Error: Last Name is required"
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Sauce Labs Backpack", "João", "Marcos", "", "Error: Postal Code is required"

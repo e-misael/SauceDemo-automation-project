@@ -1,6 +1,0 @@
-testShouldCheckoutAndProceedToOverview, url, user, password, productName, productDescription, productPrice, firstname, lastname, zipcode, pagetitle
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Sauce Labs Backpack", "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.", "$29.99", "Maria", "Pereira", "102030", "Checkout: Overview"
-testShouldVerifyProductDetailsDuringOverview, url, user, password, productQty, productName, productDescription, productPrice, firstname, lastname, zipcode, summarySubtotal, summaryTax, summaryTotal
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "1", "Sauce Labs Bolt T-Shirt", "Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.", "$15.99", "Maria", "Pereira", "9999800", "Item total: $15.99", "Tax: $1.28", "Total: $17.27"
-testShouldCompleteOrderCorrectly, url, user, password, productName, firstname, lastname, zipcode, message
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Sauce Labs Backpack", "Maria", "Pereira", "102030", "Thank you for your order!"

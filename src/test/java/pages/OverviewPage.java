@@ -8,8 +8,6 @@ import java.util.List;
 
 public class OverviewPage extends BasePage {
     private By pageTitle = By.className("header_secondary_container");
-
-//    private By itemQty = By.className("summary_quantity");
     private By itemQty = By.className("cart_quantity");
     private By itemName = By.className("inventory_item_name");
     private By itemDescription = By.className("inventory_item_desc");
@@ -46,15 +44,6 @@ public class OverviewPage extends BasePage {
         itemDetails.add(browser.findElement(summaryTotal).getText());
         return itemDetails;
     }
-
-//    public List<String> getCheckoutValues (){
-//        List<String> checkoutValues = new ArrayList<String>();
-//        checkoutValues.add(browser.findElement(summarySubtotal).getText());
-//        checkoutValues.add(browser.findElement(summaryTax).getText());
-//        checkoutValues.add(browser.findElement(summaryTotal).getText());
-//
-//        return checkoutValues;
-//    }
 
     public FinishPage goToCompletePage (){
         browser.findElement(btn_Finish).click();

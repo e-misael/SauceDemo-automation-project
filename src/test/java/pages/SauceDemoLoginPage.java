@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class SauceDemoLoginPage extends BasePage {
     private By field_User = By.cssSelector("[data-test='username']");
     private By field_Password = By.cssSelector("[data-test='password']");
@@ -46,7 +48,7 @@ public class SauceDemoLoginPage extends BasePage {
     }
 
     public String getValidationMessage(){
-        WebDriverWait wait = new WebDriverWait(browser, 5);
+        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(5));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(errorMessage));
 

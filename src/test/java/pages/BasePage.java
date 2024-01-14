@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class BasePage {
     protected WebDriver browser;
     private By btn_Cart = By.id("shopping_cart_container");
@@ -21,7 +23,7 @@ public class BasePage {
 
     public void waitFor(By element) {
 
-        WebDriverWait waitForElement = new WebDriverWait(browser, 20);
+        WebDriverWait waitForElement = new WebDriverWait(browser, Duration.ofSeconds(20));
         waitForElement.until(ExpectedConditions.presenceOfElementLocated(element));
 
     }

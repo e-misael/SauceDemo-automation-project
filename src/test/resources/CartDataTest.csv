@@ -1,5 +1,0 @@
-testShouldAddProductToCartAndVerifyItemDetails, url, user, password, productName, productDescription, productPrice
-                   , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Test.allTheThings() T-Shirt (Red)", "This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.", "$15.99"
-
-testShouldReturnToInventory, url, user, password, productName
-                                     , "https://www.saucedemo.com/", "standard_user", "secret_sauce", "Sauce Labs Onesie"

@@ -12,7 +12,7 @@ public class ProductPage extends BasePage {
     private By btn_Cart = By.id("shopping_cart_container");
     private By btn_AddToCart;
 
-    private By product_SauceLabsBackpack = By.linkText("Sauce Labs Backpack");
+    private By product;
 
 
     public ProductPage(WebDriver browser) {
@@ -30,7 +30,8 @@ public class ProductPage extends BasePage {
     public ProductDetailsPage detailInventoryProduct (String productName) {
 
         waitFor(header_Products);
-        browser.findElement(product_SauceLabsBackpack).click();
+        product = By.linkText(productName);
+        browser.findElement(product).click();
 
         return new ProductDetailsPage(browser);
     }

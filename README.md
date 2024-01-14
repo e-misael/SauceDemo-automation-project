@@ -3,8 +3,18 @@ Some automation scenarios for SauceDemo.com site using Selenium WebDriver, Java1
 
 Project created using PageObjects concepts.
 
-# Running the project
-1. Ensure you have Maven set in your environment.
-2. Clone the project.
-3. Perform the tests by running the command "mvn clean test site".
-4. Open the results by running the command "npx allure serve target/allure-results".
+## Running the project
+### Precondition
+1. Ensure you have JDK17, Maven, and Allure set in your environment.
+
+### Steps
+1. Clone the project.
+2. Open the terminal.
+3. Navigate to the project folder.
+4. Run the command "mvn clean test".
+
+### Checking the test-result
+1. Open the target/allure-results folder.
+2. Run the command "allure generate".
+3. Run the command "allure open".
+

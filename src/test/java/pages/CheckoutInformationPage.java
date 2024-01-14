@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class CheckoutInformationPage extends BasePage{
     private By errorMessage = By.cssSelector("[data-test='error']");
 
@@ -46,7 +48,7 @@ public class CheckoutInformationPage extends BasePage{
     }
 
     public String getValidationMessage(){
-        WebDriverWait wait = new WebDriverWait(browser, 5);
+        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(5));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(errorMessage));
 
