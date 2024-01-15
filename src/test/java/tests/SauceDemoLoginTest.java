@@ -10,16 +10,10 @@ import org.openqa.selenium.WebDriver;
 import pages.SauceDemoLoginPage;
 import pojo.User;
 import utils.Browser;
-import utils.RandomDateGenerator;
-import utils.Screenshot;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SauceDemoLoginTest extends Browser {
-    private final String filePath = "src/test/testReports/";
-    private final String imageExt = ".png";
-    private String methodName = "_Undefined_Method_Name";
 
     private WebDriver browser;
     private SauceDemoLoginPage sauceDemoLoginPage;
@@ -38,7 +32,7 @@ public class SauceDemoLoginTest extends Browser {
     }
 
     /**
-     * Description: This test should verify the system behavior on try to checkout with incorrect values.
+     * Description: This test should verify the system behavior on try to check out with incorrect values.
      **/
     @ParameterizedTest(name = "User: {0}, Password: {1}")
     @MethodSource("data.UserDataFactory#invalidUsers")
@@ -46,8 +40,6 @@ public class SauceDemoLoginTest extends Browser {
                                                  String user,
                                                  String password,
                                                  String expectedMessage) {
-
-        methodName = "_testShouldValidateIncorrectLogin";
 
         sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
@@ -58,11 +50,7 @@ public class SauceDemoLoginTest extends Browser {
 
         String receivedMessage = sauceDemoLoginPage.getValidationMessage();
 
-        assertEquals(expectedMessage, receivedMessage);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(receivedMessage).isEqualTo(expectedMessage);
     }
 
     /**
@@ -71,8 +59,6 @@ public class SauceDemoLoginTest extends Browser {
     @Test
     public void testShouldSuccessfullyLogin() {
 
-        methodName = "_testShouldSuccessfullyLogin";
-
         sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
         boolean isHeaderDisplayed =
@@ -80,10 +66,6 @@ public class SauceDemoLoginTest extends Browser {
                     .doLogin(standardUser.username(), standardUser.password())
                     .identifyIfHeaderIsDisplayed();
 
-        assertTrue(isHeaderDisplayed);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(isHeaderDisplayed).isTrue();
     }
 }

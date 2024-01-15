@@ -18,19 +18,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.0</version>
-                <configuration>
-                    <parallel>classes</parallel>
-                    <threadCount>4</threadCount>
-                </configuration>
                 <dependencies>
-                <dependency>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter</artifactId>
-                    <version>5.10.1</version>
-                </dependency>
-            </dependencies>
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter</artifactId>
+                        <version>5.10.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
+
     </build>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
@@ -71,17 +68,12 @@
             <artifactId>selenium-java</artifactId>
             <version>4.16.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>5.9</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.easetech/easytest-core-->
-        <dependency>
-            <groupId>org.easetech</groupId>
-            <artifactId>easytest-core</artifactId>
-            <version>1.4.0</version>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.25.1</version>
+            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
@@ -101,6 +93,5 @@
             <artifactId>datafaker</artifactId>
             <version>2.1.0</version>
         </dependency>
-
     </dependencies>
 </project>

@@ -1,11 +1,10 @@
 package tests;
 
 import data.UserDataFactory;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
@@ -16,13 +15,9 @@ import utils.Browser;
 import java.util.Arrays;
 import java.util.List;
 
-import static io.qameta.allure.SeverityLevel.NORMAL;
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CartTest extends Browser {
-    private final String filePath = "src/test/testReports/";
-    private final String imageExt = ".png";
-    private String methodName = "_Undefined_Method_Name";
     private User standardUser;
     private WebDriver browser;
 
@@ -41,18 +36,16 @@ public class CartTest extends Browser {
      * Description: This test is responsible for add an item to the cart and verify its details.
      **/
 
-    //@Test
-    @Severity(NORMAL)
     @ParameterizedTest(name = "Current product data -> Name: {0}, Description: {1}, Price: {2}")
     @MethodSource("data.CartTestData#allProductsData")
     @DisplayName("Add product to cart and verify item details")
+    @Tag("regression")
     public void testShouldAddProductToCartAndVerifyItemDetails(String productName,
                                                                String productDescription,
                                                                String productPrice){
-        methodName = "_testShouldAddProductToCartAndVerifyItemDetails";
         SauceDemoLoginPage sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
-        List<String> receivedProductDetails =
+        List<String> currentProductDetails =
             sauceDemoLoginPage
                 .doLogin(standardUser.username(), standardUser.password())
                 .addItemToCartWithoutDetailing(productName)
@@ -64,11 +57,8 @@ public class CartTest extends Browser {
                         productDescription,
                         productPrice);
 
-        assertEquals(expectedProductDetails, receivedProductDetails);
+        assertThat(currentProductDetails).isEqualTo(expectedProductDetails);
 
-//        Screenshot.takeScreenshot(browser, filePath
-//                + RandomDateGenerator.generateTimestampToFile()
-//                + methodName + imageExt);
     }
 
     /**
@@ -77,16 +67,15 @@ public class CartTest extends Browser {
 
     @ParameterizedTest(name = "Product name -> {0}")
     @MethodSource("data.CartTestData#getRandomProductName")
-    @Severity(SeverityLevel.MINOR)
     @DisplayName("Return to inventory page after adding an item to cart without detailing it.")
+    @Tag("scrsht")
     public void testShouldReturnToInventory(String productName){
 
-        methodName = "_testShouldReturnToInventory";
         String expectedTitle = "Products";
 
         SauceDemoLoginPage sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
-        String productPageTitle =
+        String currentProductPageTitle =
             sauceDemoLoginPage
                 .doLogin(standardUser.username(), standardUser.password())
                 .addItemToCartWithoutDetailing(productName)
@@ -94,10 +83,6 @@ public class CartTest extends Browser {
                 .returnToInventory()
                 .getProductPageTitle();
 
-        assertEquals(expectedTitle, productPageTitle);
-
-//        Screenshot.takeScreenshot(browser, filePath
-//                + RandomDateGenerator.generateTimestampToFile()
-//                + methodName + imageExt);
+            assertThat(currentProductPageTitle).isEqualTo(expectedTitle);
     }
 }

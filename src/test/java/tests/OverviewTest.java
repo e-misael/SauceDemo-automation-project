@@ -3,24 +3,22 @@ package tests;
 import data.UserDataFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 import pages.SauceDemoLoginPage;
 import pojo.User;
 import utils.Browser;
-import utils.RandomDateGenerator;
-import utils.Screenshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class OverviewTest extends Browser {
-    private final String filePath = "src/test/testReports/";
-    private final String imageExt = ".png";
-    private String methodName = "_Undefined_Method_Name";
+
     private User standardUser;
     private WebDriver browser;
 
@@ -47,11 +45,9 @@ public class OverviewTest extends Browser {
                                                        String zipCode,
                                                        String expectedPageTitle) {
 
-        methodName = "_testShouldCheckoutAndProceedToOverview";
-
         SauceDemoLoginPage sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
-        String pageTitle = sauceDemoLoginPage
+        String currentPageTitle = sauceDemoLoginPage
             .doLogin(standardUser.username(), standardUser.password())
             .detailInventoryProduct(productName)
             .addInventoryProductToCart()
@@ -60,11 +56,7 @@ public class OverviewTest extends Browser {
             .fillCheckoutAndContinue(firstName, lastName, zipCode)
                 .getPageTitle();
 
-        assertEquals(expectedPageTitle, pageTitle);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(currentPageTitle).isEqualTo(expectedPageTitle);
     }
 
     /**
@@ -84,8 +76,6 @@ public class OverviewTest extends Browser {
                                                               String summaryTax,
                                                               String summaryTotal){
 
-        methodName = "_testShouldVerifyProductDetailsDuringOverview";
-
         SauceDemoLoginPage sauceDemoLoginPage = new SauceDemoLoginPage (browser);
 
         List<String> expectedProductDetails = new ArrayList<String>();
@@ -97,7 +87,7 @@ public class OverviewTest extends Browser {
             expectedProductDetails.add(summaryTax);
             expectedProductDetails.add(summaryTotal);
 
-        List<String> productDetails =
+        List<String> currentproductDetails =
                 sauceDemoLoginPage
                         .doLogin(standardUser.username(), standardUser.password())
                         .addItemToCartWithoutDetailing(productName)
@@ -106,16 +96,13 @@ public class OverviewTest extends Browser {
                         .fillCheckoutAndContinue(firstName, lastName, zipCode)
                         .getProductDetails();
 
-        assertEquals(expectedProductDetails, productDetails);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(currentproductDetails).isEqualTo(expectedProductDetails);
     }
 
     /**
      * Description: This test should do the complete order scenario.
      **/
+    @Tags({@Tag("smoke"), @Tag("regression")})
     @ParameterizedTest(name = "Data: {0}, {1}, {2}, {3}, {4}")
     @MethodSource("data.OverviewTestData#dataForOverviewPageCheckingAfterSuccessfulPurchase")
     public void testShouldCompleteOrderCorrectly (
@@ -125,11 +112,9 @@ public class OverviewTest extends Browser {
                                                   String zipCode,
                                                   String expectedSuccessMessage) {
 
-        methodName = "_testShouldCompleteOrderCorrectly";
-
         SauceDemoLoginPage sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
-        String successMessage = sauceDemoLoginPage
+        String currentSuccessMessage = sauceDemoLoginPage
                 .doLogin(standardUser.username(), standardUser.password())
                 .addItemToCartWithoutDetailing(productName)
                 .goToCart()
@@ -138,10 +123,6 @@ public class OverviewTest extends Browser {
                 .goToCompletePage()
                 .getSuccessMessage();
 
-        assertEquals(expectedSuccessMessage, successMessage);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(currentSuccessMessage).isEqualTo(expectedSuccessMessage);
     }
 }

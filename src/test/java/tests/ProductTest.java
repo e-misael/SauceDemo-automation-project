@@ -9,18 +9,13 @@ import org.openqa.selenium.WebDriver;
 import pages.SauceDemoLoginPage;
 import pojo.User;
 import utils.Browser;
-import utils.RandomDateGenerator;
-import utils.Screenshot;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProductTest extends Browser {
-    private final String filePath = "src/test/testReports/";
-    private final String imageExt = ".png";
-    private String methodName = "_Undefined_Method_Name";
 
     private WebDriver browser;
     private SauceDemoLoginPage sauceDemoLoginPage;
@@ -42,9 +37,7 @@ public class ProductTest extends Browser {
      **/
     @ParameterizedTest(name = "Data: {0}")
     @MethodSource("data.ProductTestData#inventoryProducts")
-    public void testShouldListInventoryProducts(List<?> products) {
-
-        methodName = "_testShouldListInventoryProducts";
+    public void testShouldListInventoryProducts(List<?> expectedProducts) {
 
         sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
@@ -53,13 +46,7 @@ public class ProductTest extends Browser {
                         .doLogin(standardUser.username(), standardUser.password())
                         .showListOfProductNames();
 
-
-
-        assertEquals(products, receivedProductList);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(receivedProductList).isEqualTo(expectedProducts);
     }
 
     /**
@@ -72,13 +59,11 @@ public class ProductTest extends Browser {
                                            String productName1,
                                            String productName2) {
 
-        methodName = "_testShouldAddProductToCart";
-
         sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
         int expectedCartSize = 2;
 
-        int cartSize =
+        int currentCartSize =
                 Integer.parseInt(
                         sauceDemoLoginPage
                                 .doLogin(standardUser.username(), standardUser.password())
@@ -87,11 +72,7 @@ public class ProductTest extends Browser {
                                 .addInventoryProductToCart()
                                 .verifyCartSize());
 
-        assertEquals(expectedCartSize, cartSize);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(currentCartSize).isEqualTo(expectedCartSize);
     }
 
     /**
@@ -105,8 +86,6 @@ public class ProductTest extends Browser {
                                            String productDescription,
                                            String productPrice) {
 
-        methodName = "_testShouldDetailingProduct";
-
         sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
         List<String> receivedProductsData =
@@ -118,10 +97,6 @@ public class ProductTest extends Browser {
         List<String> expectedProductsData =
                 Arrays.asList(productName, productDescription, productPrice);
 
-        assertEquals(expectedProductsData, receivedProductsData);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(receivedProductsData).isEqualTo(expectedProductsData);
     }
 }

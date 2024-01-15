@@ -9,15 +9,10 @@ import org.openqa.selenium.WebDriver;
 import pages.SauceDemoLoginPage;
 import pojo.User;
 import utils.Browser;
-import utils.RandomDateGenerator;
-import utils.Screenshot;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CheckoutInformationTest extends Browser {
-    private final String filePath = "src/test/testReports/";
-    private final String imageExt = ".png";
-    private String methodName = "_Undefined_Method_Name";
     private User standardUser;
 
     private WebDriver browser;
@@ -34,7 +29,7 @@ public class CheckoutInformationTest extends Browser {
     }
 
     /**
-     * Description: This test should verify the system behavior on try to checkout with blank fields.
+     * Description: This test should verify the system behavior when checking out with blank fields.
      **/
     @ParameterizedTest(name = "Data -> Product name: {0}, Firstname: {1}, Lastname: {2}, ZipCode: {3}")
     @MethodSource("data.CheckoutInformationTestData#dataForCheckoutFormValidation")
@@ -45,11 +40,9 @@ public class CheckoutInformationTest extends Browser {
                                                  String zipCode,
                                                  String expectedMessage) {
 
-        methodName = "_testShouldValidateRequiredFields";
-
         SauceDemoLoginPage sauceDemoLoginPage = new SauceDemoLoginPage(browser);
 
-        String receivedMessage = sauceDemoLoginPage
+        String currentMessage = sauceDemoLoginPage
                 .doLogin(standardUser.username(), standardUser.password())
                 .addItemToCartWithoutDetailing(productName)
                 .goToCart()
@@ -60,10 +53,6 @@ public class CheckoutInformationTest extends Browser {
                 .clickAtContinueButtonAndStay()
                 .getValidationMessage();
 
-        assertEquals(expectedMessage, receivedMessage);
-
-        Screenshot.takeScreenshot(browser, filePath
-                + RandomDateGenerator.generateTimestampToFile()
-                + methodName + imageExt);
+        assertThat(currentMessage).isEqualTo(expectedMessage);
     }
 }
